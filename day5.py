@@ -45,14 +45,11 @@ sorted_ranges = sorted(fresh_id_ranges)
 
 num_ints_in_ranges = 0
 cur_start, cur_end = sorted_ranges[0]
-# print(f'cur_start: {cur_start}, cur_end: {cur_end}')
 for start, end in sorted_ranges[1:]:
-    print(start, end, sep=' - ')
     if start <= cur_end + 1:
         cur_end = max(cur_end, end)
     else:
         num_ints_in_ranges += (cur_end - cur_start + 1)
-        # print(f'Added {(cur_end - cur_start + 1)}')
         cur_start, cur_end = start, end
 num_ints_in_ranges += (cur_end - cur_start + 1)
 
