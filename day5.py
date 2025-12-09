@@ -1,9 +1,3 @@
-# ----- part 1 -----
-
-# solution to day5test.txt: 3
-
-import contextlib
-
 def get_fresh_id_ranges(input: List[str]) -> List[Tuple[int, int]]:
     return [tuple(int(s) for s in line.split('-')) for line in input if '-' in line]
 
@@ -24,36 +18,46 @@ def get_num_ints_in_ranges(ints: List[int], ranges: List[Tuple[int, int]]) -> in
                 ints_in_ranges.append(n)
     return num_ints_in_ranges
 
+def part_one() -> Any:
+    # ----- part 1 -----
 
-FILE_PATH = 'inputs/day5.txt'
+    # solution to day5test.txt: 3
 
-with open(FILE_PATH) as f:
-    inputs = f.read().splitlines()
+    FILE_PATH = 'inputs/day5.txt'
 
-fresh_id_ranges = get_fresh_id_ranges(inputs)
-available_ids = get_available_ids(inputs)
+    with open(FILE_PATH) as f:
+        inputs = f.read().splitlines()
 
-num_fresh_available_ids = get_num_ints_in_ranges(available_ids, fresh_id_ranges)
+    fresh_id_ranges = get_fresh_id_ranges(inputs)
+    available_ids = get_available_ids(inputs)
 
-print(f'Part 1: {num_fresh_available_ids}')
+    num_fresh_available_ids = get_num_ints_in_ranges(available_ids, fresh_id_ranges)
 
-
-# ----- part 2 -----
-
-# sort ranges by starting value
-sorted_ranges = sorted(fresh_id_ranges)
-
-num_ints_in_ranges = 0
-cur_start, cur_end = sorted_ranges[0]
-for start, end in sorted_ranges[1:]:
-    if start <= cur_end + 1:
-        cur_end = max(cur_end, end)
-    else:
-        num_ints_in_ranges += (cur_end - cur_start + 1)
-        cur_start, cur_end = start, end
-num_ints_in_ranges += (cur_end - cur_start + 1)
+    return num_fresh_available_ids
 
 
+def part_two():
+    global start, end
+    # ----- part 2 -----
 
+    FILE_PATH = 'inputs/day5.txt'
 
-print(f'Part 2: {num_ints_in_ranges}')
+    with open(FILE_PATH) as f:
+        inputs = f.read().splitlines()
+
+    fresh_id_ranges = get_fresh_id_ranges(inputs)
+
+    # sort ranges by starting value
+    sorted_ranges = sorted(fresh_id_ranges)
+
+    num_ints_in_ranges = 0
+    cur_start, cur_end = sorted_ranges[0]
+    for start, end in sorted_ranges[1:]:
+        if start <= cur_end + 1:
+            cur_end = max(cur_end, end)
+        else:
+            num_ints_in_ranges += (cur_end - cur_start + 1)
+            cur_start, cur_end = start, end
+    num_ints_in_ranges += (cur_end - cur_start + 1)
+
+    return num_ints_in_ranges
