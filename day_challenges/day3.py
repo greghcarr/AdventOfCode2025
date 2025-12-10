@@ -1,10 +1,11 @@
+import helpers.input_reader as ir
+
+FILE_PATH = 'input/day3.txt'
+
 def part_one():
     # day3test.txt solution: 98 + 89 + 78 + 92 = 357
 
-    FILE_PATH = 'inputs/day3.txt'
-
-    with open(FILE_PATH) as f:
-        inputs = f.read().splitlines()
+    inputs = ir.read_file(FILE_PATH)
 
     joltages = []
     for seq in inputs:
@@ -27,10 +28,7 @@ def part_one():
 # ----- part 2 -----
 
 def part_two():
-    FILE_PATH = 'inputs/day3.txt'
-
-    with open(FILE_PATH) as f:
-        inputs = f.read().splitlines()
+    inputs = ir.read_file(FILE_PATH)
 
     joltages = []
     for seq in inputs:

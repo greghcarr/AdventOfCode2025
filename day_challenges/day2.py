@@ -1,9 +1,13 @@
+import helpers.input_reader as ir
+
+FILE_PATH = 'input/day2.txt'
 # ----- part one -----
 
 def part_one():
     global end
-    with open('inputs/day2.txt') as f:
-        ranges = f.read().split(',')
+    inputs = ir.read_file(FILE_PATH)
+    for line in inputs:
+        ranges = line.split(',')
 
     # print(ranges)
 
@@ -33,8 +37,9 @@ def factors(n):
 
 def part_two():
     global end
-    with open('inputs/day2.txt') as f:
-        ranges = f.read().split(',')
+    inputs = ir.read_file(FILE_PATH)
+    for line in inputs:
+        ranges = line.split(',')
 
     # print(ranges)
 

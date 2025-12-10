@@ -1,10 +1,11 @@
+import helpers.input_reader as ir
+
+FILE_PATH = 'input/day1.txt'
 # ----- part one -----
 
 def part_one():
     global pos
-    rotations: list[str]
-    with open("inputs/day1.txt") as f:
-        rotations = f.read().splitlines()
+    rotations = ir.read_file(FILE_PATH)
 
     # print(rotations)
 
@@ -25,10 +26,10 @@ def part_one():
 
 def part_two():
     global pos
+    inputs = ir.read_file(FILE_PATH)
     rotations = []
-    with open("inputs/day1.txt") as f:
-        for line in f:
-            rotations.append(int(line.strip().replace('L', '-').replace('R', '')))
+    for line in inputs:
+        rotations.append(int(line.strip().replace('L', '-').replace('R', '')))
 
     # print(rotations)
 

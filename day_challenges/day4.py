@@ -1,12 +1,13 @@
+import helpers.input_reader as ir
+
+FILE_PATH = 'input/day4.txt'
+
 def part_one():
     # ----- part 1 -----
 
     # solution to day4test.txt: 13
-
-    FILE_PATH = 'inputs/day4.txt'
-
-    with open(FILE_PATH) as f:
-        inputs = f.read().splitlines()
+    
+    inputs = ir.read_file(FILE_PATH)
 
     accessible_rolls = 0
 
@@ -56,10 +57,7 @@ def part_one():
 def part_two():
     # ----- part 2 -----
 
-    FILE_PATH = 'inputs/day4.txt'
-
-    with open(FILE_PATH) as f:
-        inputs = f.read().splitlines()
+    inputs = ir.read_file(FILE_PATH)
 
     def delete_rolls(lines: List[str], positions: List[Tuple[int, int]]) -> List[str]:
         for position in positions:

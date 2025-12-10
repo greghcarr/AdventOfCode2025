@@ -1,3 +1,7 @@
+import helpers.input_reader as ir
+
+FILE_PATH = 'input/day5.txt'
+
 def get_fresh_id_ranges(input: List[str]) -> List[Tuple[int, int]]:
     return [tuple(int(s) for s in line.split('-')) for line in input if '-' in line]
 
@@ -23,10 +27,7 @@ def part_one() -> Any:
 
     # solution to day5test.txt: 3
 
-    FILE_PATH = 'inputs/day5.txt'
-
-    with open(FILE_PATH) as f:
-        inputs = f.read().splitlines()
+    inputs = ir.read_file(FILE_PATH)
 
     fresh_id_ranges = get_fresh_id_ranges(inputs)
     available_ids = get_available_ids(inputs)
@@ -40,10 +41,7 @@ def part_two():
     global start, end
     # ----- part 2 -----
 
-    FILE_PATH = 'inputs/day5.txt'
-
-    with open(FILE_PATH) as f:
-        inputs = f.read().splitlines()
+    inputs = ir.read_file(FILE_PATH)
 
     fresh_id_ranges = get_fresh_id_ranges(inputs)
 

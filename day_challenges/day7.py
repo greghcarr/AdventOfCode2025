@@ -1,3 +1,7 @@
+import helpers.input_reader as ir
+
+FILE_PATH = 'input/day7.txt'
+
 # ----- part 1 -----
 
 # solution to day7test.txt: 21
@@ -7,13 +11,8 @@ def print_lines(lines: List[int]) -> None:
         print(l)
 
 def part_one():
-    FILE_PATH = 'inputs/day7.txt'
     
-    inputs = []
-    
-    with open(FILE_PATH) as f:
-        for line in f:
-            inputs.append(line.strip())
+    inputs = ir.read_file(FILE_PATH)
     
     # print_lines(inputs)
     
@@ -53,10 +52,35 @@ def part_one():
 # ----- part 2 -----
 
 def part_two():
-    FILE_PATH = 'inputs/day7.txt'
-    diagram = []
-    with open(FILE_PATH) as f:
-        for line in f:
-            diagram.append(line.strip())
+    diagram = ir.read_file(FILE_PATH)
+            
+    paths_matrix = []
+    
+    for line_index, line in enumerate(diagram):
+        # print(f'Line #: {line_index}')
+        # make the paths_line all zeroes
+        paths_line = [0 for _ in range(len(line))]
+        for char_index, char in enumerate(line):
+            # for the first line only, find the source(s)
+            if line_index == 0:
+                if char == 'S':
+                    paths_line[char_index] = 1
+            else:
+                # if no splitter
+                if char == '.':
+                    # add number above
+                    paths_line[char_index] += (paths_matrix[line_index - 1][char_index])
+                # if splitter
+                if char == '^':
+                    # add above to spaces to the left and right of current
+                    paths_line[char_index - 1] += paths_matrix[line_index - 1][char_index]
+                    paths_line[char_index + 1] += paths_matrix[line_index - 1][char_index]
+        paths_matrix.append(paths_line)
+    # sum of the last line of the paths matrix is the answer
+    return sum(paths_matrix[len(paths_matrix) - 1])
+                    
+            
+                
+                
             
     return None

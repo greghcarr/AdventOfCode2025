@@ -1,3 +1,7 @@
+import helpers.input_reader as ir
+
+FILE_PATH = 'input/day6.txt'
+
 def do_math(operator: str, operands: list):
     if operator == '+':
         return sum(operands)
@@ -12,14 +16,11 @@ def part_one():
     
     # solution to day6test.txt: 4277556
     
-    
-    FILE_PATH = 'inputs/day6.txt'
+    f = ir.read_file(FILE_PATH)
     
     inputs = []
-    
-    with open(FILE_PATH) as f:
-        for line in f:
-            inputs.append(line.strip())
+    for line in f:
+        inputs.append(line.strip())
     
     # print(inputs)
     
@@ -43,11 +44,8 @@ def part_one():
 
 def part_two():
     # ----- part two -----
-    
-    FILE_PATH = 'inputs/day6.txt'
-    
-    with open(FILE_PATH) as f:
-        inputs = f.read().splitlines()
+
+    inputs = ir.read_file(FILE_PATH)
     
     # number = [line[-1] for line in inputs]
     
